@@ -76,6 +76,7 @@ No modules.
 | <a name="input_deployment_minimum_healthy_percent"></a> [deployment\_minimum\_healthy\_percent](#input\_deployment\_minimum\_healthy\_percent) | Minimum healthy percentage for a deployment. Defaults to 0, disabling this check. | `number` | `0` | no |
 | <a name="input_docker_image"></a> [docker\_image](#input\_docker\_image) | Base docker image to use. | `string` | n/a | yes |
 | <a name="input_docker_tag"></a> [docker\_tag](#input\_docker\_tag) | Tag of the docker image to use. | `string` | n/a | yes |
+| <a name="input_entrypoint"></a> [entrypoint](#input\_entrypoint) | Entrypoint to be passed to the container. | `list(string)` | `null` | no |
 | <a name="input_execution_role_policy_arns"></a> [execution\_role\_policy\_arns](#input\_execution\_role\_policy\_arns) | A list of additional policy ARNs to attach to the service's execution role. | `list(string)` | `[]` | no |
 | <a name="input_fargate_version"></a> [fargate\_version](#input\_fargate\_version) | Fargate platform version to use. Defaults to `LATEST`. | `string` | `"LATEST"` | no |
 | <a name="input_max_capacity"></a> [max\_capacity](#input\_max\_capacity) | A maximum capacity for autoscaling. | `number` | n/a | yes |

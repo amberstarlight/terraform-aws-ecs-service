@@ -61,8 +61,8 @@ resource "aws_ecs_task_definition" "this" {
   task_role_arn            = aws_iam_role.task_role.arn
   skip_destroy             = var.skip_destroy
   requires_compatibilities = var.use_fargate ? ["FARGATE"] : ["EC2"]
-  cpu                      = var.cpu
-  memory                   = var.memory
+  cpu                      = var.use_fargate ? var.cpu : null
+  memory                   = var.use_fargate ? var.memory : null
 
   container_definitions = jsonencode([
     {
@@ -71,6 +71,11 @@ resource "aws_ecs_task_definition" "this" {
       essential   = true
       environment = local.merged_environment
       secrets     = local.merged_secrets
+
+      cpu    = var.use_fargate ? null : var.cpu
+      memory = var.use_fargate ? null : var.memory
+
+      entrypoint = var.entrypoint
 
       portMappings = [{
         protocol      = "tcp"

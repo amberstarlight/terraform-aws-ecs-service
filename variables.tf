@@ -202,3 +202,9 @@ variable "use_autoscaling" {
   type        = bool
   default     = true
 }
+
+variable "entrypoint" {
+  description = "Entrypoint to be passed to the container."
+  type        = list(string)
+  default     = null
+}
