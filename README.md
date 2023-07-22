@@ -10,17 +10,10 @@ module "service" {
   source = "github.com/amberstarlight/terraform-aws-ecs-service"
 
   cluster_name = "ecs-cluster"
-  service_name = "webserver"
-  
-  docker_image = "nginx"
-  docker_tag   = "stable"
-  max_capacity = 5
+  service_name = "arch-builders"
 
-  cloudwatch_log_group_name = "webserver-logs"
-  
-  target_group_arn = aws_lb_target_group.webserver.arn
-  security_groups  = [aws_security_group.alb_sg.id]
-  subnet_ids       = [aws_subnet.private.id]
+  docker_image = "archlinux"
+  docker_tag   = "base-devel"
 }
 ```
 
