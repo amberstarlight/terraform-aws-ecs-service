@@ -22,11 +22,15 @@ locals {
     )
   )
 
+  task_role_policy_arns = flatten([
+    var.task_role_policy_arns,
+    try(aws_iam_policy.exec[0].arn, null)
+  ])
+
   tags = merge(
     {
       Terraform = "true"
     },
     var.tags,
   )
-
 }

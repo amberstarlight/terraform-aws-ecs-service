@@ -36,7 +36,30 @@ resource "aws_iam_role_policy_attachment" "task_role_policy" {
 }
 
 resource "aws_iam_role_policy_attachment" "task_role_additional_policies" {
-  count      = length(var.task_role_policy_arns)
+  count      = length(local.task_role_policy_arns)
   role       = aws_iam_role.task_role.name
-  policy_arn = var.task_role_policy_arns[count.index]
+  policy_arn = local.task_role_policy_arns[count.index]
+}
+
+data "aws_iam_policy_document" "exec" {
+  count = var.enable_ecs_exec ? 1 : 0
+  statement {
+    effect = "Allow"
+    actions = [
+      "ssmmessages:CreateControlChannel",
+      "ssmmessages:CreateDataChannel",
+      "ssmmessages:OpenControlChannel",
+      "ssmmessages:OpenDataChannel",
+      "logs:CreateLogStream",
+      "logs:DescribeLogStreams",
+      "logs:PutLogEvents"
+    ]
+    resources = ["*"]
+  }
+}
+
+resource "aws_iam_policy" "exec" {
+  count  = var.enable_ecs_exec ? 1 : 0
+  name   = "${var.service_name}-ecs-exec-policy"
+  policy = data.aws_iam_policy_document.exec[0].json
 }

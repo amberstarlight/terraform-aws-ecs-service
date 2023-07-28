@@ -208,3 +208,9 @@ variable "entrypoint" {
   type        = list(string)
   default     = null
 }
+
+variable "enable_ecs_exec" {
+  description = "Whether to enable ECS Exec for the service."
+  type        = bool
+  default     = false
+}
