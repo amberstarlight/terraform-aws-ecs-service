@@ -1,11 +1,12 @@
 resource "aws_ecs_service" "this" {
-  name                   = var.service_name
-  cluster                = local.cluster_arn
-  task_definition        = aws_ecs_task_definition.this.arn
-  desired_count          = var.service_count
-  launch_type            = var.use_fargate ? "FARGATE" : "EC2"
-  platform_version       = var.use_fargate ? var.fargate_version : null
-  enable_execute_command = var.enable_ecs_exec
+  name                              = var.service_name
+  cluster                           = local.cluster_arn
+  task_definition                   = aws_ecs_task_definition.this.arn
+  desired_count                     = var.service_count
+  launch_type                       = var.use_fargate ? "FARGATE" : "EC2"
+  platform_version                  = var.use_fargate ? var.fargate_version : null
+  enable_execute_command            = var.enable_ecs_exec
+  health_check_grace_period_seconds = var.healthcheck_grace_period
 
   dynamic "load_balancer" {
     for_each = var.target_group_arn != null ? [true] : []

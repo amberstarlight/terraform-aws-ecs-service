@@ -214,3 +214,9 @@ variable "enable_ecs_exec" {
   type        = bool
   default     = false
 }
+
+variable "healthcheck_grace_period" {
+  description = "Number of seconds to wait before starting healthchecks on the service. Defaults to `10`."
+  type        = number
+  default     = 10
+}

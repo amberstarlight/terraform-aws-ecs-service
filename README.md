@@ -82,6 +82,7 @@ No modules.
 | <a name="input_entrypoint"></a> [entrypoint](#input\_entrypoint) | Entrypoint to be passed to the container. | `list(string)` | `null` | no |
 | <a name="input_execution_role_policy_arns"></a> [execution\_role\_policy\_arns](#input\_execution\_role\_policy\_arns) | A list of additional policy ARNs to attach to the service's execution role. | `list(string)` | `[]` | no |
 | <a name="input_fargate_version"></a> [fargate\_version](#input\_fargate\_version) | Fargate platform version to use. Defaults to `LATEST`. | `string` | `"LATEST"` | no |
+| <a name="input_healthcheck_grace_period"></a> [healthcheck\_grace\_period](#input\_healthcheck\_grace\_period) | Number of seconds to wait before starting healthchecks on the service. Defaults to `10`. | `number` | `10` | no |
 | <a name="input_max_capacity"></a> [max\_capacity](#input\_max\_capacity) | A maximum capacity for autoscaling. | `number` | n/a | yes |
 | <a name="input_memory"></a> [memory](#input\_memory) | Memory limits for container. | `number` | `512` | no |
 | <a name="input_min_capacity"></a> [min\_capacity](#input\_min\_capacity) | A minimum capacity for autoscaling. Defaults to 1. | `number` | `1` | no |
