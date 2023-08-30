@@ -38,6 +38,11 @@ resource "aws_ecs_service" "this" {
   deployment_minimum_healthy_percent = var.deployment_minimum_healthy_percent
   wait_for_steady_state              = var.wait_for_steady_state
 
+  deployment_circuit_breaker {
+    enable   = var.enable_rollback
+    rollback = var.enable_rollback
+  }
+
   timeouts {
     create = var.timeout
     update = var.timeout
